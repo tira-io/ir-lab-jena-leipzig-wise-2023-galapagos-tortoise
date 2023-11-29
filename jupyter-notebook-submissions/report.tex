@@ -1,0 +1,44 @@
+\documentclass[DIN, pagenumber=false, fontsize=11pt, parskip=half]{scrartcl}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+
+
+\setlength{\parindent}{0em}
+
+% set section in CM
+\setkomafont{section}{\normalfont\bfseries\Large}
+
+\newcommand{\mytitle}[1]{{\noindent\Large\textbf{#1}}}
+
+%===================================
+\begin{document}
+
+\noindent\textbf{Information Retrieval} \hfill Galápagos Tortoise\\
+WiSe 23/24 \hfill FSU Jena\\
+
+\mytitle{Report - Milestone 3\hfill \today}
+
+%===================================
+
+We took this milestone as an opportunity to explore some of the features of information retrieval provided by \texttt{pyterrier}. Unfortunately, our knowledge in the field is still very limited, hence, we were not always able to assess the relevance of the measures taken. \texttt{Pyterrier}'s experiments provided some assistance, but with quite some evaluation criteria at hand, it was hard to decide which one we should strive to maximize.\\ 
+Below we briefly outline our retrieval pipeline.\\
+\begin{enumerate}
+\item Initial retrieval with \texttt{PL2}.\\
+We wanted to expore some alternatives to retrieval with \texttt{BM25}.
+\item Tune hyperparameter \(c\) of \texttt{PL2}.\\
+We tested several values for \texttt{PL2}'s \(c\) parameter and visualized the mean average precision (\texttt{map}) depending on the choice of \(c\). Setting \(c=1.4\) yielded the best result.
+\item Second retrieval with \texttt{BM25}.\\
+With \texttt{BM25} we introduced a second ranking function.
+\item Experiment with query expansion for \texttt{BM25}.\\
+\texttt{Pyterrier} provides several query expansion models. We tested Bose-Einstein statistics (\texttt{Bo1}) and Kullback-Leibler divergence (\texttt{KL}). The first one yielded better results on our training data.
+\item Combine multiple retrieval systems linearly.\\
+We combined our two retrieval models (\texttt{PL2} and \texttt{BM25} with \texttt{Bo1} query expansion) linearly, weighting \texttt{BM25}'s score twice as much, as it seemed to be the stronger model. Yet, we hoped to benefit from their respective strengths by combining them linearly.
+\item Run experiments to evaluate performance.\\
+The combination of \texttt{PL2} and \texttt{BM25} with \texttt{Bo1} query expansion performed best.
+\item Rerank with transformer.
+\end{enumerate}
+
+\end{document}
