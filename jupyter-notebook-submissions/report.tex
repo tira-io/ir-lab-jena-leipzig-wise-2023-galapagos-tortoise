@@ -4,7 +4,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
-
+\usepackage{url}
 
 \setlength{\parindent}{0em}
 
@@ -23,13 +23,13 @@ WiSe 23/24 \hfill FSU Jena\\
 
 %===================================
 
-We took this milestone as an opportunity to explore some of the features of information retrieval provided by \texttt{pyterrier}. Unfortunately, our knowledge in the field is still very limited, hence, we were not always able to assess the relevance of the measures taken. \texttt{Pyterrier}'s experiments provided some assistance, but with quite some evaluation criteria at hand, it was hard to decide which one we should strive to maximize.\\ 
+We took this milestone as an opportunity to explore some of the features of information retrieval provided by \texttt{pyterrier} \cite{pyterrier2020ictir}. Unfortunately, our knowledge in the field is still very limited, hence, we were not always able to assess the relevance of the measures taken. \texttt{Pyterrier}'s experiments provided some assistance, but with quite some evaluation criteria at hand, it was hard to decide which one we should strive to maximize.\\ 
 Below we briefly outline our retrieval pipeline.\\
 \begin{enumerate}
 \item Initial retrieval with \texttt{PL2}.\\
 We wanted to expore some alternatives to retrieval with \texttt{BM25}.
 \item Tune hyperparameter \(c\) of \texttt{PL2}.\\
-We tested several values for \texttt{PL2}'s \(c\) parameter and visualized the mean average precision (\texttt{map}) depending on the choice of \(c\). Setting \(c=1.2\) yielded the best result.
+We tested several values for \texttt{PL2}'s \(c\) parameter and visualized the mean average precision (\texttt{map}) depending on the choice of \(c\). Setting \(c=1.4\) yielded the best result.
 \item Second retrieval with \texttt{BM25}.\\
 With \texttt{BM25} we introduced a second ranking function.
 \item Experiment with query expansion for \texttt{BM25}.\\
@@ -38,7 +38,19 @@ With \texttt{BM25} we introduced a second ranking function.
 We combined our two retrieval models (\texttt{PL2} and \texttt{BM25} with \texttt{Bo1} query expansion) linearly, weighting \texttt{BM25}'s score twice as much, as it seemed to be the stronger model. Yet, we hoped to benefit from their respective strengths by combining them linearly.
 \item Run experiments to evaluate performance.\\
 The combination of \texttt{PL2} and \texttt{BM25} with \texttt{Bo1} query expansion performed best.
-\item Rerank with transformer.
+\item Rerank the results with neural reranking using pyterrier\_t5\cite{githubRepo}. For this, the following steps where necessary:
+\begin{itemize}
+    \item Split the documents into snippets, since the neural reranker has a maximum token size of 512 token. For this we used a sliding window approach.
+    \item Apply the reranking to the snippets.
+    \item Use an aggregation approach to get a score for a single document based on the scores of the snippets. Here we used the maximum score of any snippet of a given document.
+\end{itemize}
 \end{enumerate}
+
+\section*{Results}
+
+%TODO add the results when the tira pipeline is finished.
+
+\bibliographystyle{plain}
+\bibliography{references}
 
 \end{document}
