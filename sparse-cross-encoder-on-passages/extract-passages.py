@@ -43,7 +43,7 @@ def parse_args():
 def load_run(run_file):
     from pyterrier.io import read_results
     ret = read_results(run_file + '/run.txt')
-    return ret[ret['rank'] <= 10]
+    return ret[ret['rank'] <= 25]
 
 
 def rank_fusion(monot5, rank_zephyr, colbert):
