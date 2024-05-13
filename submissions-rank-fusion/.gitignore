@@ -1,0 +1,3 @@
+*.lag*
+.tira/*
+!.tira/.gitkeep
