@@ -1,0 +1,30 @@
+System Name: galapagos-tortoise-bm25-bo1-pl2-monot5-max
+Description (short description of the system):
+Weighted linear combination of BM25 (with Bo1 query expansion; weight: 2) and PL2 (weight: 1). Next, the top-50 results are re-ranked with monoT5 (monot5-base-msmarco). After re-ranking snippets are aggregated by max passage score aggregation.
+
+************
+System Details. Please provide as many details as possible here, so it is possible to reproduce your run.
+
+Ranking Methods (Which ranking approaches does the system use?): BM25 with Bo1 query expansion, PL2, MonoT5
+Data Used (Which data were used to train and fine-tune the system? Please be as concrete as possible and use the exact reference whenever possible): LongEval 2022 data
+Software Used (Which software and tools did you use for training, tunning and running your system? Please be as concrete as possible, provide a reference to your code if possible, and provide the exact software version, whenever applicable): PyTerrier (0.1.0), PyTerrier-T5, TIRA (0.0.88)
+Pre-processing and Indexing (What pre-processing and indexing does the system use? Please be as concrete as possible and provide the details and the setup of the tools): PyTerrier indexing (default settings)
+System Combination / Fusion (Does the system combine different retrieval models? If so, how are they combined?): Linear combination of BM25 (with Bo1 query expansion) and PL2
+Multi-stage Retrieval (Is system single-stage or does it use reranking? If multi-stage, which rerankers are used?): monoT5 re-ranking with max passage score aggregation
+Translations (Does the system use French documents or the translations? If translations, which ones?): English
+
+Resources (How much GPU, CPU, memory, ... did you use for pre-processing and inference steps? Did you use any commercial cloud services?): software executed on TIRA (20GB RAM, 2 CPUs, 8GB GPU)
+The Costs (How long did pre-processing and inference take?): pre-processing and inference took 7 hours per dataset (i.e., for each lag)
+
+************
+Yes/No Questions
+
+Did you use any statistical ranking model? (yes/no): yes
+Did you use any deep neural network model? (yes/no): yes
+Did you use a sparse neural model? (yes/no): no
+Did you use a dense neural model? (yes/no): no
+Did you use more than a single retrieval model? (yes/no): yes
+Did you use French or English documents (French/English/both): English
+Did you use provided English translations (yes/no): no
+Did you use any manual intervention on the translations? (yes/no): no
+Did you use any manual intervention on the results? (yes/no): no
