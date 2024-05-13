@@ -1,0 +1,30 @@
+System Name: galapagos-tortoise-rank-zephyr
+Description (short description of the system):
+LLM-based re-ranking of BM25 top-1000 with RankZephyr.
+
+************
+System Details. Please provide as many details as possible here, so it is possible to reproduce your run.
+
+Ranking Methods (Which ranking approaches does the system use?): RankZephyr
+Data Used (Which data were used to train and fine-tune the system? Please be as concrete as possible and use the exact reference whenever possible): Model was used as-is.
+Software Used (Which software and tools did you use for training, tunning and running your system? Please be as concrete as possible, provide a reference to your code if possible, and provide the exact software version, whenever applicable): TIRA (0.0.129), PyTerrier (0.10.0)
+Pre-processing and Indexing (What pre-processing and indexing does the system use? Please be as concrete as possible and provide the details and the setup of the tools): None
+System Combination / Fusion (Does the system combine different retrieval models? If so, how are they combined?): No
+Multi-stage Retrieval (Is system single-stage or does it use reranking? If multi-stage, which rerankers are used?): All models are used as re-rankers of a BM25 candidate retrieval (top-1000).
+Translations (Does the system use French documents or the translations? If translations, which ones?): English
+
+Resources (How much GPU, CPU, memory, ... did you use for pre-processing and inference steps? Did you use any commercial cloud services?): Run used from TIRA cache.
+The Costs (How long did pre-processing and inference take?): 10 minutes
+
+************
+Yes/No Questions
+
+Did you use any statistical ranking model? (yes/no): yes
+Did you use any deep neural network model? (yes/no): yes
+Did you use a sparse neural model? (yes/no): no
+Did you use a dense neural model? (yes/no): yes, LLM
+Did you use more than a single retrieval model? (yes/no): yes
+Did you use French or English documents (French/English/both): English
+Did you use provided English translations (yes/no): yes
+Did you use any manual intervention on the translations? (yes/no): no
+Did you use any manual intervention on the results? (yes/no): no
