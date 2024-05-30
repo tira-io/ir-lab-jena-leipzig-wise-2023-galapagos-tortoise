@@ -54,5 +54,5 @@ jobs:
       - name: Build, test, and upload image
         run: |
           docker build -t ${{ env.IMAGE_TAG }} --build-arg JUPYTER_NOTEBOOK=${{inputs.notebook}} ${{ github.workspace }}/jupyter-notebook-submissions
-          tira-run --input-directory ${{ env.INPUT_DIRECTORY }} --image ${{ env.IMAGE_TAG }} --push true
+          tira-run --input-directory ${{ env.INPUT_DIRECTORY }} --image ${{ env.IMAGE_TAG }} --push true --fail-if-output-is-empty
 
