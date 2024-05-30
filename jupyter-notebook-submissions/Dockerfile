@@ -11,7 +11,7 @@ ARG JUPYTER_NOTEBOOK=pyterrier-notebook.ipynb
 RUN export TIRA_INPUT_DATASET=/tmp-delete-ir-dataset \
 	&& mv /workspace/${JUPYTER_NOTEBOOK} /workspace/notebook.ipynb \
 	&& export TIRA_OUTPUT_DIR=/tmp \
-	&& ./run-pyterrier-notebook.py -y --input ${TIRA_INPUT_DATASET} --output ${TIRA_OUTPUT_DIR} --notebook /workspace/notebook.ipynb \
+	&& echo y | ./run-pyterrier-notebook.py --input ${TIRA_INPUT_DATASET} --output ${TIRA_OUTPUT_DIR} --notebook /workspace/notebook.ipynb \
 	&& rm -R /tmp-delete-ir-dataset \
 	&& head -3 /tmp/run.txt \
 	&& rm /tmp/run.txt \
